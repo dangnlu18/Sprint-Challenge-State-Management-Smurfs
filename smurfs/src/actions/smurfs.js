@@ -14,11 +14,38 @@ export function getSmurfs(){
 		axios.get('http://localhost:3333/smurfs')
 			.then((res)=>{
 				console.log(res)
-				dispatch({type: FETCH_SMURFS_SUCCESS, payload: res})
+				dispatch({type: FETCH_SMURFS_SUCCESS, payload: res.data})
 			})
 			.catch((err)=> {
 				dispatch({type: FETCH_SMURFS_ERROR, payload: err})
 			})
 
+	}
+}
+
+
+
+
+export function addSmurf(item){
+	return (dispatch)=>{
+		dispatch({type: FETCH_SMURFS })
+
+		axios.post('http://localhost:3333/smurfs', item)
+			.then((res)=>{
+				console.log(res)
+				dispatch({type:ADD_SMURF, payload: res.data})
+			})
+			.catch((err)=>{
+				dispatch({type: FETCH_SMURFS_ERROR, payload: err.response.data})
+			})
+
+
+	}
+}
+
+export function removeSmurf(item){
+	return{
+		type: REMOVE_SMURF,
+		payload: item
 	}
 }

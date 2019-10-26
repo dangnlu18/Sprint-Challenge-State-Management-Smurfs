@@ -3,8 +3,7 @@ import { FETCH_SMURFS, FETCH_SMURFS_SUCCESS, FETCH_SMURFS_ERROR, ADD_SMURF, REMO
 const initialState = {
 	smurfs: [],
 	isLoading: false,
-	error: null,
-	newSmurfs: []
+	error: null
 }
 
 export function reducer(state=initialState, action){
@@ -30,7 +29,7 @@ export function reducer(state=initialState, action){
 		case ADD_SMURF:
 			return{
 				...state,
-				newSmurfs: [...state.newSmurfs, action.payload]
+				smurfs: [...state.smurfs, ...action.payload]
 			}
 		case REMOVE_SMURF:
 			updatedSmurfs = [state.smurfs.filter(smurf => smurf.id !== action.payload.id)]
